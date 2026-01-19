@@ -1,1 +1,314 @@
-# Team-zero-web
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Zero Research & Development Consultancy</title>
+    <style>
+        /* MODERN CORPORATE STYLING */
+        :root {
+            --primary: #004080; /* Team Zero Blue - Trust & Engineering */
+            --secondary: #d4af37; /* Gold - Premium Service */
+            --dark: #111;
+            --light: #f4f4f4;
+            --white: #ffffff;
+            --text-grey: #4a4a4a;
+        }
+        
+        body { margin: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: var(--text-grey); }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; padding: 0; }
+        
+        /* NAVIGATION */
+        nav {
+            background: var(--white); box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 15px 50px; display: flex; justify-content: space-between; align-items: center;
+            position: fixed; width: 100%; top: 0; z-index: 1000; box-sizing: border-box;
+        }
+        .logo { font-size: 1.5em; font-weight: 800; color: var(--primary); display: flex; align-items: center; gap: 10px; }
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a { font-weight: 600; color: var(--dark); font-size: 0.9em; text-transform: uppercase; letter-spacing: 1px; }
+        .nav-links a:hover { color: var(--secondary); }
+        .btn-cta {
+            background: var(--secondary); color: var(--white); padding: 10px 25px; 
+            border-radius: 5px; font-weight: bold; border: none; cursor: pointer; text-transform: uppercase;
+        }
+        .btn-cta:hover { background: #b89628; }
+
+        /* HERO SECTION */
+        header {
+            background: linear-gradient(rgba(0, 64, 128, 0.9), rgba(0, 20, 40, 0.95)), url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover; background-position: center; height: 100vh;
+            display: flex; align-items: center; justify-content: center; text-align: center; color: var(--white);
+            padding-top: 60px;
+        }
+        .hero-content h1 { font-size: 3.5em; margin-bottom: 15px; line-height: 1.1; font-weight: 800; }
+        .hero-content p { font-size: 1.3em; max-width: 700px; margin: 0 auto 40px auto; color: #e0e0e0; font-weight: 300; }
+        
+        /* SECTIONS COMMON */
+        section { padding: 100px 50px; }
+        .section-title { text-align: center; margin-bottom: 60px; }
+        .section-title h2 { font-size: 2.5em; color: var(--primary); margin-bottom: 15px; font-weight: 700; }
+        .section-title p { max-width: 600px; margin: 0 auto; color: #666; }
+        .section-title .line { width: 80px; height: 4px; background: var(--secondary); margin: 20px auto 0; }
+
+        /* ABOUT SECTION */
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .about-text h3 { font-size: 1.8em; color: var(--dark); margin-bottom: 20px; }
+        .about-text p { margin-bottom: 20px; font-size: 1.05em; }
+        .about-image { 
+            background: url('https://images.unsplash.com/photo-1531482615713-2afd69097998?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'); 
+            background-size: cover; height: 400px; border-radius: 8px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); 
+        }
+
+        /* SERVICES GRID (ENHANCED) */
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+        .service-card {
+            background: var(--white); padding: 40px; border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05); border-bottom: 4px solid transparent;
+            transition: all 0.3s ease; position: relative; overflow: hidden;
+        }
+        .service-card:hover { transform: translateY(-10px); border-bottom-color: var(--secondary); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
+        .icon { font-size: 3em; color: var(--primary); margin-bottom: 25px; }
+        .service-card h3 { margin-bottom: 15px; color: var(--dark); font-size: 1.4em; }
+        .service-card ul { list-style: disc; padding-left: 20px; margin-top: 15px; color: #555; }
+        .service-card li { margin-bottom: 8px; font-size: 0.95em; }
+
+        /* FEATURED PRODUCT */
+        .featured-product { background: #f8f9fa; display: flex; align-items: center; gap: 60px; }
+        .product-text { flex: 1; }
+        .product-image-container { 
+            flex: 1; background: white; padding: 20px; border-radius: 12px; 
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1); 
+        }
+        .tag { background: #e3f2fd; color: var(--primary); padding: 6px 12px; border-radius: 20px; font-size: 0.85em; font-weight: 700; margin-right: 10px; display: inline-block; }
+
+        /* CONTACT FORM */
+        .contact-container { display: flex; gap: 60px; max-width: 1100px; margin: 0 auto; }
+        .contact-info { flex: 1; }
+        .contact-form { flex: 1; display: flex; flex-direction: column; gap: 20px; background: white; padding: 40px; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        .contact-item { display: flex; align-items: center; gap: 20px; margin-bottom: 25px; }
+        .contact-icon { width: 50px; height: 50px; background: var(--light); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--primary); font-size: 1.2em; }
+        
+        input, textarea { padding: 15px; border: 1px solid #ddd; border-radius: 5px; font-family: inherit; width: 100%; box-sizing: border-box; }
+        input:focus, textarea:focus { border-color: var(--primary); outline: none; }
+        textarea { height: 120px; resize: vertical; }
+
+        /* FOOTER */
+        footer { background: #0b1c2e; color: #a0aebf; padding: 60px 50px 20px 50px; font-size: 0.9em; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 50px; margin-bottom: 50px; }
+        .footer-brand h3 { color: var(--white); font-size: 1.8em; margin-bottom: 20px; }
+        .copyright { text-align: center; border-top: 1px solid #1f364d; padding-top: 30px; }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            nav { padding: 15px 20px; }
+            .nav-links { display: none; }
+            .hero-content h1 { font-size: 2.2em; }
+            .about-grid, .featured-product, .contact-container { grid-template-columns: 1fr; display: block; }
+            .about-image { margin-top: 40px; }
+            .product-image-container { margin-top: 40px; }
+            .contact-form { margin-top: 40px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">
+            <span>⚡ Team Zero</span>
+        </div>
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#about">Who We Are</a>
+            <a href="#services">Services</a>
+            <a href="#product">School System</a>
+        </div>
+        <button class="btn-cta" onclick="document.getElementById('contact').scrollIntoView()">Consult Us</button>
+    </nav>
+
+    <header id="home">
+        <div class="hero-content">
+            <h1>Engineering Intelligence.<br>Solving Complex Problems.</h1>
+            <p>We combine Mechatronics Engineering with Advanced Software Development to build systems that work in the real world.</p>
+            <div style="display: flex; gap: 20px; justify-content: center;">
+                <button class="btn-cta" onclick="location.href='#product'">School Software</button>
+                <button class="btn-cta" style="background: transparent; border: 2px solid white;" onclick="location.href='#services'">Explore Engineering</button>
+            </div>
+        </div>
+    </header>
+
+    <section id="about">
+        <div class="section-title">
+            <h2>About Team Zero R&D</h2>
+            <div class="line"></div>
+        </div>
+        <div class="about-grid">
+            <div class="about-text">
+                <h3>Technical Leadership You Can Trust</h3>
+                <p>Team Zero is a specialized consultancy firm founded by <strong>Farai Teasdale Chitodha</strong>, a Mechatronics Engineering Graduate from the <strong>University of Zimbabwe</strong>. Unlike standard IT companies, we approach every project with an engineering mindset—focusing on reliability, efficiency, and longevity.</p>
+                <p>From developing offline-first software architectures for Zimbabwean schools to designing Reinforcement Learning (AI) models for power management, our expertise bridges the gap between hardware and software.</p>
+                <p><strong>Our Mission:</strong> To provide robust, locally-relevant digital and mechanical solutions that drive operational efficiency.</p>
+            </div>
+            <div class="about-image"></div>
+        </div>
+    </section>
+
+    <section id="services" style="background: #f9f9f9;">
+        <div class="section-title">
+            <h2>Our Core Competencies</h2>
+            <p>We deliver high-level engineering, academic, and software solutions.</p>
+            <div class="line"></div>
+        </div>
+        <div class="services-grid">
+            
+            <div class="service-card">
+                <div class="icon">🔬</div>
+                <h3>Academic & Research Support</h3>
+                <p>Advanced technical assistance for researchers and students:</p>
+                <ul>
+                    <li><strong>Dissertations:</strong> Technical guidance and structuring.</li>
+                    <li><strong>Prototyping:</strong> Building hardware models & proof-of-concepts.</li>
+                    <li><strong>Simulations:</strong> MATLAB/Simulink modeling.</li>
+                    <li><strong>Bio-Pipelines:</strong> Development of biological data processing pipelines.</li>
+                </ul>
+            </div>
+
+            <div class="service-card">
+                <div class="icon">⚙️</div>
+                <h3>Mechatronics & Design</h3>
+                <p>Integrated mechanical and electronic system design:</p>
+                <ul>
+                    <li>CAD Modeling & 3D Simulation.</li>
+                    <li>Industrial Automation Systems.</li>
+                    <li>Mechanical Design (HVAC & Machinery).</li>
+                </ul>
+            </div>
+
+            <div class="service-card">
+                <div class="icon">🧠</div>
+                <h3>AI & Predictive Maintenance</h3>
+                <p>Leveraging AI to predict failures before they happen:</p>
+                <ul>
+                    <li>Predictive Maintenance (PdM) Models.</li>
+                    <li>Reinforcement Learning for Optimization.</li>
+                    <li>Intelligent Control Systems.</li>
+                </ul>
+            </div>
+
+            <div class="service-card">
+                <div class="icon">💻</div>
+                <h3>Software Development</h3>
+                <p>Building tools that streamline administration:</p>
+                <ul>
+                    <li>Custom ERP & Management Software.</li>
+                    <li>Offline-First Web Architectures.</li>
+                    <li>Data Analytics & Reporting Tools.</li>
+                </ul>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="product" class="featured-product">
+        <div class="product-text">
+            <h4 style="color:var(--secondary); font-weight:800; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px;">Education Technology</h4>
+            <h2 style="font-size: 2.5em; color: var(--primary); line-height: 1.1; margin-bottom: 20px;">The Complete School Engine</h2>
+            <p style="font-size: 1.1em; margin-bottom: 30px;">A robust "Offline-First" management system designed specifically for the Zimbabwean education sector. It handles finances, academics, and records without requiring constant internet access.</p>
+            
+            <div style="margin-bottom: 30px;">
+                <div class="tag">✅ Lifetime License</div>
+                <div class="tag">✅ No Monthly Fees</div>
+                <div class="tag">✅ Works Offline</div>
+            </div>
+            
+            <button class="btn-cta" onclick="alert('Demo Request Sent!')">Request System Demo</button>
+        </div>
+        <div class="product-image-container">
+            <div style="background: #e9ecef; height: 300px; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-direction: column; text-align: center; padding: 20px;">
+                <span style="font-size: 4em;">🖥️</span>
+                <h4 style="margin: 10px 0 0 0; color: #495057;">Dashboard Preview</h4>
+                <p style="font-size: 0.9em; color: #868e96;">Financials • Academics • Enrollment</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="section-title">
+            <h2>Start Your Project</h2>
+            <div class="line"></div>
+        </div>
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>Ready to modernize your operations?</h3>
+                <p>Whether you need a school management system, academic research assistance, or a complex engineering design, Team Zero is ready to deliver.</p>
+                <br>
+                <div class="contact-item">
+                    <div class="contact-icon">📞</div>
+                    <div>
+                        <strong>Call / WhatsApp</strong><br>
+                        <span style="color: var(--primary); font-weight: bold;">0785 306 061</span>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">📧</div>
+                    <div>
+                        <strong>Email Us</strong><br>
+                        fariechitodha@gmail.com
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">📍</div>
+                    <div>
+                        <strong>Location</strong><br>
+                        Ngundu / Harare, Zimbabwe
+                    </div>
+                </div>
+            </div>
+            <form class="contact-form" onsubmit="event.preventDefault(); alert('Thank you. We will contact you shortly.');">
+                <h3 style="margin-top: 0;">Send us a message</h3>
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Email Address" required>
+                <select style="padding: 15px; border: 1px solid #ddd; border-radius: 5px; width: 100%; background: white;">
+                    <option>I need the School System (CSE)</option>
+                    <option>Academic Assistance (Dissertation/Simulations)</option>
+                    <option>Engineering Consultancy</option>
+                    <option>Software Development</option>
+                </select>
+                <textarea placeholder="Tell us about your requirements..."></textarea>
+                <button class="btn-cta" style="width:100%">Submit Inquiry</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <h3>Team Zero R&D</h3>
+                <p>Bridging the gap between theory and application. We build systems that drive Zimbabwean institutions forward.</p>
+            </div>
+            <div>
+                <strong style="color: white; display: block; margin-bottom: 20px;">Expertise</strong>
+                <ul style="line-height: 2;">
+                    <li><a href="#">Academic Research</a></li>
+                    <li><a href="#">School ERPs</a></li>
+                    <li><a href="#">Mechatronics</a></li>
+                    <li><a href="#">Bio-Pipelines</a></li>
+                </ul>
+            </div>
+            <div>
+                <strong style="color: white; display: block; margin-bottom: 20px;">Connect</strong>
+                <ul style="line-height: 2;">
+                    <li>Facebook</li>
+                    <li>LinkedIn</li>
+                    <li>WhatsApp Business</li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2026 Team Zero Research & Development Consultancy. All Rights Reserved.
+        </div>
+    </footer>
+
+</body>
+</html>
